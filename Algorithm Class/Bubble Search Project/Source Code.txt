@@ -1,0 +1,55 @@
+#include <iostream>
+#include <stdlib.h>
+#include <fstream>
+#include<time.h>
+using namespace std;
+
+void swap(int* a, int* b) {
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void bubble_sort(int a[], int size) {
+    int i, j;
+    for (i = 0; i < size; i++) {
+        for (j = 0; j < size - i - 1; j++) {
+            if (a[j] > a[j + 1]) {
+                swap(&a[j], &a[j + 1]);
+            }
+        }
+    }
+}
+
+
+int main(void)
+{
+
+    ofstream bubblesort;
+    bubblesort.open("teamunknown.txt");
+
+    srand(time(0));
+    int a[150];
+    bubblesort << "Orginal array: ";
+    for (int i = 0; i < 150; i++) {
+        a[i] = 0 + (rand() % 200);
+        bubblesort << a[i] << " ";
+    }
+    bubblesort << "\n" << endl;
+
+
+
+
+    bubble_sort(a, 150);
+
+    bubblesort << "Sorted array: ";
+    for (int i = 0; i < 150; i++) {
+        bubblesort << a[i] << " ";
+    }
+    bubblesort << "\n";
+
+
+    bubblesort.close();
+    return 0;
+}
